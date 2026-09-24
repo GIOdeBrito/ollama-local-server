@@ -179,18 +179,6 @@ function handleClear (elements)
 	elements.input.focus();
 }
 
-function handleNewChat (elements)
-{
-	if (elements === null || elements === undefined) {
-		return;
-	}
-
-	elements.log.replaceChildren();
-	renderSeedMessages(elements);
-	updateStatus(elements, "New local chat started.");
-	elements.input.focus();
-}
-
 function renderSeedMessages (elements)
 {
 	if (elements === null || elements === undefined) {
@@ -209,7 +197,6 @@ function collectElements ()
 	const input = document.getElementById("composer-input");
 	const sendButton = document.getElementById("send-btn");
 	const clearButton = document.getElementById("clear-btn");
-	const newChatButton = document.getElementById("new-chat-btn");
 	const status = document.getElementById("status-text");
 	const charCount = document.getElementById("char-count");
 
@@ -217,7 +204,7 @@ function collectElements ()
 		return null;
 	}
 
-	if (sendButton === null || clearButton === null || newChatButton === null) {
+	if (sendButton === null || clearButton === null) {
 		return null;
 	}
 
@@ -231,7 +218,6 @@ function collectElements ()
 		input,
 		sendButton,
 		clearButton,
-		newChatButton,
 		status,
 		charCount
 	});
@@ -249,10 +235,6 @@ function bindEvents (elements)
 
 	elements.clearButton.addEventListener("click", () => {
 		handleClear(elements);
-	});
-
-	elements.newChatButton.addEventListener("click", () => {
-		handleNewChat(elements);
 	});
 
 	elements.input.addEventListener("input", () => {

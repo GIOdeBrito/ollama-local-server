@@ -122,19 +122,6 @@ function updateCharCount (elements)
 	elements.charCount.textContent = currentLength + " / " + MAX_MESSAGE_LENGTH;
 }
 
-function updateStatus (elements, message)
-{
-	if (elements === null || elements === undefined) {
-		return;
-	}
-
-	if (!isNonEmptyString(message)) {
-		return;
-	}
-
-	elements.status.textContent = message;
-}
-
 function appendLocalPreviewReply (elements)
 {
 	if (elements === null || elements === undefined) {
@@ -155,14 +142,12 @@ function handleSend (elements)
 	const messageText = getTrimmedInput(elements.input);
 
 	if (!isNonEmptyString(messageText)) {
-		updateStatus(elements, "Type a message first.");
 		return;
 	}
 
 	appendMessage(elements, "user", messageText);
 	elements.input.value = "";
 	updateCharCount(elements);
-	updateStatus(elements, "Message added locally. Backend not wired.");
 
 	// TODO/backend: replace local echo with queued request when API is defined.
 	appendLocalPreviewReply(elements);
@@ -175,7 +160,6 @@ function handleClear (elements)
 	}
 
 	elements.log.replaceChildren();
-	updateStatus(elements, "Conversation cleared locally.");
 	elements.input.focus();
 }
 
@@ -197,7 +181,6 @@ function collectElements ()
 	const input = document.getElementById("composer-input");
 	const sendButton = document.getElementById("send-btn");
 	const clearButton = document.getElementById("clear-btn");
-	const status = document.getElementById("status-text");
 	const charCount = document.getElementById("char-count");
 
 	if (scroll === null || log === null || input === null) {
@@ -208,7 +191,7 @@ function collectElements ()
 		return null;
 	}
 
-	if (status === null || charCount === null) {
+	if (charCount === null) {
 		return null;
 	}
 
@@ -218,7 +201,6 @@ function collectElements ()
 		input,
 		sendButton,
 		clearButton,
-		status,
 		charCount
 	});
 }
@@ -266,7 +248,6 @@ function initChatApp ()
 	bindEvents(elements);
 	renderSeedMessages(elements);
 	updateCharCount(elements);
-	updateStatus(elements, "Ready. Backend not connected.");
 }
 
 document.addEventListener("DOMContentLoaded", () => {

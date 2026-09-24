@@ -306,6 +306,7 @@ body {
 
 .status-cell-wide {
 	flex: 1;
+	min-height: 14px;
 	overflow: hidden;
 	text-overflow: ellipsis;
 }

@@ -4,15 +4,20 @@ services:
       context: ./api
       dockerfile: Dockerfile
     restart: unless-stopped
+    depends_on:
+      - ollama-app
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=http://+:8080
+      - OLLAMA_URL=http://ollama-app:11434
     ports:
       - "5000:8080"
     volumes:
       - ./api:/app
       - /app/obj
       - /app/bin
+    networks:
+      - app-network
   ollama-app:
     build:
       context: ./ollama
@@ -25,6 +30,12 @@ services:
     volumes:
       - ./ollama/entrypoint.sh:/entrypoint.sh:ro
       - ollama-models:/root/.ollama
+    networks:
+      - app-network
 
 volumes:
   ollama-models:
+
+networks:
+  app-network:
+    driver: bridge

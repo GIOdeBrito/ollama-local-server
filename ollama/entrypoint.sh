@@ -18,7 +18,7 @@ done
 #ollama pull gemma2:2b
 
 # Using now a more lightweight model
-ollama pull qwen2.5:1.5b
+ollama pull qwen2.5:0.5b
 
 # Keep the container alive and forward shutdown signals to the server
 trap 'kill -TERM "$SERVER_PID"' TERM INT

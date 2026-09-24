@@ -21,7 +21,7 @@ function isNonEmptyString (value)
 
 function getTrimmedInput (inputElement)
 {
-	if (inputElement === NULL || inputElement === undefined) {
+	if (inputElement === null || inputElement === undefined) {
 		return "";
 	}
 
@@ -30,18 +30,6 @@ function getTrimmedInput (inputElement)
 	}
 
 	return inputElement.value.trim().slice(0, MAX_MESSAGE_LENGTH);
-}
-
-function formatClockTime (dateValue)
-{
-	if (!(dateValue instanceof Date)) {
-		return "--:--";
-	}
-
-	const hours = String(dateValue.getHours()).padStart(2, "0");
-	const minutes = String(dateValue.getMinutes()).padStart(2, "0");
-
-	return hours + ":" + minutes;
 }
 
 function formatMessageTime (dateValue)
@@ -54,6 +42,19 @@ function formatMessageTime (dateValue)
 		hour: "2-digit",
 		minute: "2-digit"
 	});
+}
+
+function labelForRole (role)
+{
+	if (role === "user") {
+		return "You";
+	}
+
+	if (role === "assistant") {
+		return "Ollama (preview)";
+	}
+
+	return "System";
 }
 
 function buildMessageRow (role, text, timeLabel)
@@ -84,22 +85,9 @@ function buildMessageRow (role, text, timeLabel)
 	return row;
 }
 
-function labelForRole (role)
-{
-	if (role === "user") {
-		return "You";
-	}
-
-	if (role === "assistant") {
-		return "Ollama (preview)";
-	}
-
-	return "System";
-}
-
 function scrollLogToBottom (scrollContainer)
 {
-	if (scrollContainer === NULL || scrollContainer === undefined) {
+	if (scrollContainer === null || scrollContainer === undefined) {
 		return;
 	}
 
@@ -108,7 +96,7 @@ function scrollLogToBottom (scrollContainer)
 
 function appendMessage (elements, role, text)
 {
-	if (elements === NULL || elements === undefined) {
+	if (elements === null || elements === undefined) {
 		return;
 	}
 
@@ -125,7 +113,7 @@ function appendMessage (elements, role, text)
 
 function updateCharCount (elements)
 {
-	if (elements === NULL || elements === undefined) {
+	if (elements === null || elements === undefined) {
 		return;
 	}
 
@@ -136,7 +124,7 @@ function updateCharCount (elements)
 
 function updateStatus (elements, message)
 {
-	if (elements === NULL || elements === undefined) {
+	if (elements === null || elements === undefined) {
 		return;
 	}
 
@@ -147,9 +135,20 @@ function updateStatus (elements, message)
 	elements.status.textContent = message;
 }
 
+function appendLocalPreviewReply (elements)
+{
+	if (elements === null || elements === undefined) {
+		return;
+	}
+
+	const previewText = "Preview reply: backend wiring comes next, so this is layout-only.";
+
+	appendMessage(elements, "assistant", previewText);
+}
+
 function handleSend (elements)
 {
-	if (elements === NULL || elements === undefined) {
+	if (elements === null || elements === undefined) {
 		return;
 	}
 
@@ -169,20 +168,9 @@ function handleSend (elements)
 	appendLocalPreviewReply(elements);
 }
 
-function appendLocalPreviewReply (elements)
-{
-	if (elements === NULL || elements === undefined) {
-		return;
-	}
-
-	const previewText = "Preview reply: backend wiring comes next, so this is layout-only.";
-
-	appendMessage(elements, "assistant", previewText);
-}
-
 function handleClear (elements)
 {
-	if (elements === NULL || elements === undefined) {
+	if (elements === null || elements === undefined) {
 		return;
 	}
 
@@ -193,7 +181,7 @@ function handleClear (elements)
 
 function handleNewChat (elements)
 {
-	if (elements === NULL || elements === undefined) {
+	if (elements === null || elements === undefined) {
 		return;
 	}
 
@@ -205,7 +193,7 @@ function handleNewChat (elements)
 
 function renderSeedMessages (elements)
 {
-	if (elements === NULL || elements === undefined) {
+	if (elements === null || elements === undefined) {
 		return;
 	}
 
@@ -224,18 +212,17 @@ function collectElements ()
 	const newChatButton = document.getElementById("new-chat-btn");
 	const status = document.getElementById("status-text");
 	const charCount = document.getElementById("char-count");
-	const clock = document.getElementById("taskbar-clock");
 
-	if (scroll === NULL || log === NULL || input === NULL) {
-		return NULL;
+	if (scroll === null || log === null || input === null) {
+		return null;
 	}
 
-	if (sendButton === NULL || clearButton === NULL || newChatButton === NULL) {
-		return NULL;
+	if (sendButton === null || clearButton === null || newChatButton === null) {
+		return null;
 	}
 
-	if (status === NULL || charCount === NULL || clock === NULL) {
-		return NULL;
+	if (status === null || charCount === null) {
+		return null;
 	}
 
 	return Object.freeze({
@@ -246,14 +233,13 @@ function collectElements ()
 		clearButton,
 		newChatButton,
 		status,
-		charCount,
-		clock
+		charCount
 	});
 }
 
 function bindEvents (elements)
 {
-	if (elements === NULL) {
+	if (elements === null) {
 		return;
 	}
 
@@ -287,25 +273,11 @@ function bindEvents (elements)
 	});
 }
 
-function startClock (clockElement)
-{
-	if (clockElement === NULL || clockElement === undefined) {
-		return;
-	}
-
-	const tickClock = () => {
-		clockElement.textContent = formatClockTime(new Date());
-	};
-
-	tickClock();
-	setInterval(tickClock, 15000);
-}
-
 function initChatApp ()
 {
 	const elements = collectElements();
 
-	if (elements === NULL) {
+	if (elements === null) {
 		return;
 	}
 
@@ -313,7 +285,6 @@ function initChatApp ()
 	renderSeedMessages(elements);
 	updateCharCount(elements);
 	updateStatus(elements, "Ready. Backend not connected.");
-	startClock(elements.clock);
 }
 
 document.addEventListener("DOMContentLoaded", () => {

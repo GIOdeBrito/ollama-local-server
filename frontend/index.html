@@ -3,31 +3,18 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Ollama Chat - Windows 2000</title>
+	<title>Ollama Chat</title>
 	<link rel="stylesheet" href="styles.css">
 	<script src="app.js" defer></script>
 </head>
 <body>
-	<div class="desktop">
-		<section class="window" aria-label="Ollama chat window">
+	<main class="page">
+		<section class="window" aria-label="Ollama chat">
 			<header class="title-bar">
 				<div class="title-bar-text">
-					<span class="title-icon" aria-hidden="true">&#9635;</span>
 					<span>Ollama Chat - qwen2.5:1.5b</span>
 				</div>
-				<div class="title-bar-controls" aria-hidden="true">
-					<button class="title-btn" type="button" tabindex="-1" title="Minimize">_</button>
-					<button class="title-btn" type="button" tabindex="-1" title="Maximize">&#9633;</button>
-					<button class="title-btn title-btn-close" type="button" tabindex="-1" title="Close">X</button>
-				</div>
 			</header>
-
-			<nav class="menu-bar" aria-label="Window menu">
-				<span class="menu-item"><u>F</u>ile</span>
-				<span class="menu-item"><u>E</u>dit</span>
-				<span class="menu-item"><u>V</u>iew</span>
-				<span class="menu-item"><u>H</u>elp</span>
-			</nav>
 
 			<div class="toolbar">
 				<label class="toolbar-group" for="model-select">
@@ -39,17 +26,17 @@
 				</label>
 				<span class="toolbar-separator" aria-hidden="true"></span>
 				<span class="toolbar-group">
-					<span class="status-lamp status-lamp-off" id="backend-lamp" aria-hidden="true"></span>
-					<span class="toolbar-label" id="backend-label">Backend: not connected</span>
+					<span class="status-lamp status-lamp-off" aria-hidden="true"></span>
+					<span class="toolbar-label">Backend: not connected</span>
 				</span>
 				<span class="toolbar-spacer"></span>
 				<button class="win2000-btn" id="new-chat-btn" type="button">New Chat</button>
 				<button class="win2000-btn" id="clear-btn" type="button">Clear</button>
 			</div>
 
-			<main class="chat-scroll" id="chat-scroll">
+			<div class="chat-scroll" id="chat-scroll">
 				<div class="chat-inner" id="chat-log" aria-live="polite" aria-label="Conversation"></div>
-			</main>
+			</div>
 
 			<footer class="composer">
 				<label class="composer-label" for="composer-input">Message:</label>
@@ -71,23 +58,8 @@
 			<div class="status-bar">
 				<span class="status-cell status-cell-wide" id="status-text">Ready</span>
 				<span class="status-cell" id="char-count">0 / 2000</span>
-				<span class="status-cell">100%</span>
 			</div>
 		</section>
-
-		<footer class="taskbar">
-			<button class="win2000-btn start-btn" type="button">
-				<span class="start-logo" aria-hidden="true">&#9787;</span>
-				<strong>Start</strong>
-			</button>
-			<span class="taskbar-divider" aria-hidden="true"></span>
-			<span class="taskbar-task taskbar-task-active">
-				<span aria-hidden="true">&#9635;</span>
-				Ollama Chat
-			</span>
-			<span class="taskbar-spacer"></span>
-			<span class="taskbar-clock win2000-inset" id="taskbar-clock">--:--</span>
-		</footer>
-	</div>
+	</main>
 </body>
 </html>

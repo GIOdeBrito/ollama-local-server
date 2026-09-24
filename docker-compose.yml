@@ -1,0 +1,16 @@
+services:
+  ollama-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    environment:
+      - OLLAMA_HOST=0.0.0.0:11434
+    ports:
+      - "8000:11434"
+    volumes:
+      - ./entrypoint.sh:/entrypoint.sh:ro
+      - ollama-models:/root/.ollama
+
+volumes:
+  ollama-models:

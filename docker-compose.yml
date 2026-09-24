@@ -1,4 +1,18 @@
 services:
+  api:
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:8080
+    ports:
+      - "5000:8080"
+    volumes:
+      - ./api:/app
+      - /app/obj
+      - /app/bin
   ollama-app:
     build:
       context: ./ollama

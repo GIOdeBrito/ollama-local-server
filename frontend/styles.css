@@ -1,0 +1,421 @@
+/* Windows 2000 chat theme. Why separate file: keeps structure in HTML and behavior in JS. */
+
+:root {
+	--w2k-face: #c0c0c0;
+	--w2k-light: #ffffff;
+	--w2k-mid-light: #dfdfdf;
+	--w2k-shadow: #808080;
+	--w2k-dark: #404040;
+	--w2k-black: #000000;
+	--w2k-navy: #000080;
+	--w2k-title-end: #1084d0;
+	--w2k-desktop: #008080;
+	--w2k-paper: #ffffff;
+	--w2k-selection: #000080;
+	--w2k-user-bubble: #ffffe1;
+	--w2k-assistant-bubble: #ffffff;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+html, body {
+	margin: 0;
+	padding: 0;
+	height: 100%;
+}
+
+body {
+	font-family: Tahoma, "MS Sans Serif", Geneva, Verdana, sans-serif;
+	font-size: 12px;
+	color: var(--w2k-black);
+	background: var(--w2k-desktop);
+	overflow: hidden;
+}
+
+.desktop {
+	display: flex;
+	flex-direction: column;
+	height: 100vh;
+	padding: 16px 16px 0 16px;
+}
+
+/* Main window with classic raised bevel */
+.window {
+	display: flex;
+	flex-direction: column;
+	flex: 1;
+	min-height: 0;
+	max-width: 860px;
+	width: 100%;
+	margin: 0 auto;
+	background: var(--w2k-face);
+	border-top: 1px solid var(--w2k-mid-light);
+	border-left: 1px solid var(--w2k-mid-light);
+	border-right: 1px solid var(--w2k-black);
+	border-bottom: 1px solid var(--w2k-black);
+	box-shadow: inset -1px -1px 0 var(--w2k-shadow), inset 1px 1px 0 var(--w2k-light);
+	padding: 3px;
+}
+
+/* Title bar */
+.title-bar {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	background: linear-gradient(to right, var(--w2k-navy), var(--w2k-title-end));
+	color: var(--w2k-light);
+	padding: 3px 4px 3px 6px;
+	font-weight: bold;
+	user-select: none;
+}
+
+.title-bar-text {
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.title-icon {
+	font-size: 12px;
+}
+
+.title-bar-controls {
+	display: flex;
+	gap: 2px;
+}
+
+.title-btn {
+	width: 21px;
+	height: 19px;
+	font-size: 11px;
+	line-height: 1;
+	background: var(--w2k-face);
+	border-top: 1px solid var(--w2k-light);
+	border-left: 1px solid var(--w2k-light);
+	border-right: 1px solid var(--w2k-black);
+	border-bottom: 1px solid var(--w2k-black);
+	box-shadow: inset -1px -1px 0 var(--w2k-shadow);
+	cursor: default;
+	padding: 0;
+}
+
+/* Menu + toolbar */
+.menu-bar {
+	display: flex;
+	gap: 12px;
+	padding: 4px 8px;
+	user-select: none;
+}
+
+.menu-item {
+	cursor: default;
+}
+
+.toolbar {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	padding: 4px 6px 6px 6px;
+	border-bottom: 1px solid var(--w2k-shadow);
+	box-shadow: 0 1px 0 var(--w2k-light);
+	flex-wrap: wrap;
+}
+
+.toolbar-group {
+	display: flex;
+	align-items: center;
+	gap: 6px;
+}
+
+.toolbar-label {
+	white-space: nowrap;
+}
+
+.toolbar-separator {
+	width: 1px;
+	height: 20px;
+	background: var(--w2k-shadow);
+	box-shadow: 1px 0 0 var(--w2k-light);
+}
+
+.toolbar-spacer {
+	flex: 1;
+}
+
+/* Classic controls */
+.win2000-btn {
+	font-family: inherit;
+	font-size: 12px;
+	min-width: 72px;
+	padding: 4px 12px;
+	background: var(--w2k-face);
+	border-top: 1px solid var(--w2k-light);
+	border-left: 1px solid var(--w2k-light);
+	border-right: 1px solid var(--w2k-black);
+	border-bottom: 1px solid var(--w2k-black);
+	box-shadow: inset -1px -1px 0 var(--w2k-shadow), inset 1px 1px 0 var(--w2k-mid-light);
+	cursor: pointer;
+}
+
+.win2000-btn:active {
+	box-shadow: inset 1px 1px 0 var(--w2k-shadow);
+	border-top: 1px solid var(--w2k-black);
+	border-left: 1px solid var(--w2k-black);
+	border-right: 1px solid var(--w2k-light);
+	border-bottom: 1px solid var(--w2k-light);
+}
+
+.win2000-btn:focus-visible {
+	outline: 1px dotted var(--w2k-black);
+	outline-offset: -4px;
+}
+
+.win2000-btn-default {
+	font-weight: bold;
+}
+
+.win2000-select {
+	font-family: inherit;
+	font-size: 12px;
+	background: var(--w2k-paper);
+	padding: 3px 4px;
+	border-top: 1px solid var(--w2k-shadow);
+	border-left: 1px solid var(--w2k-shadow);
+	border-right: 1px solid var(--w2k-light);
+	border-bottom: 1px solid var(--w2k-light);
+	box-shadow: inset 1px 1px 0 var(--w2k-dark);
+}
+
+.win2000-inset {
+	border-top: 1px solid var(--w2k-shadow);
+	border-left: 1px solid var(--w2k-shadow);
+	border-right: 1px solid var(--w2k-light);
+	border-bottom: 1px solid var(--w2k-light);
+	box-shadow: inset 1px 1px 0 var(--w2k-dark), inset -1px -1px 0 var(--w2k-mid-light);
+}
+
+/* Backend lamp is display-only for now */
+.status-lamp {
+	display: inline-block;
+	width: 12px;
+	height: 12px;
+	border-top: 1px solid var(--w2k-shadow);
+	border-left: 1px solid var(--w2k-shadow);
+	border-right: 1px solid var(--w2k-light);
+	border-bottom: 1px solid var(--w2k-light);
+	background: var(--w2k-shadow);
+}
+
+.status-lamp-off {
+	background: #7a0000;
+}
+
+/* Chat area */
+.chat-scroll {
+	flex: 1;
+	min-height: 120px;
+	margin: 8px 4px 6px 4px;
+	background: var(--w2k-paper);
+	overflow-y: auto;
+}
+
+.chat-inner {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	padding: 12px;
+}
+
+.msg-row {
+	display: flex;
+}
+
+.msg-row-user {
+	justify-content: flex-end;
+}
+
+.msg-row-assistant,
+.msg-row-system {
+	justify-content: flex-start;
+}
+
+.msg-box {
+	max-width: 75%;
+	padding: 8px 10px;
+	border-top: 1px solid var(--w2k-light);
+	border-left: 1px solid var(--w2k-light);
+	border-right: 1px solid var(--w2k-shadow);
+	border-bottom: 1px solid var(--w2k-shadow);
+	box-shadow: 1px 1px 0 var(--w2k-black);
+}
+
+.msg-user {
+	background: var(--w2k-user-bubble);
+}
+
+.msg-assistant {
+	background: var(--w2k-assistant-bubble);
+}
+
+.msg-system {
+	background: var(--w2k-face);
+	font-style: italic;
+	max-width: 100%;
+	width: 100%;
+}
+
+.msg-head {
+	font-weight: bold;
+	margin-bottom: 4px;
+}
+
+.msg-body {
+	white-space: pre-wrap;
+	word-break: break-word;
+	line-height: 1.45;
+}
+
+.msg-time {
+	margin-top: 6px;
+	font-size: 10px;
+	color: var(--w2k-shadow);
+}
+
+/* Composer */
+.composer {
+	padding: 0 4px 4px 4px;
+}
+
+.composer-label {
+	display: block;
+	margin: 2px 2px 4px 2px;
+}
+
+.composer-row {
+	display: flex;
+	gap: 8px;
+	align-items: stretch;
+}
+
+.composer-input {
+	flex: 1;
+	resize: none;
+	font-family: "Courier New", monospace;
+	font-size: 12px;
+	padding: 6px;
+	background: var(--w2k-paper);
+}
+
+.composer-input:focus {
+	outline: none;
+}
+
+.composer-buttons {
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+	align-items: stretch;
+}
+
+.composer-hint {
+	font-size: 10px;
+	color: var(--w2k-dark);
+	line-height: 1.4;
+}
+
+/* Status bar */
+.status-bar {
+	display: flex;
+	gap: 4px;
+	margin-top: 6px;
+}
+
+.status-cell {
+	flex: 0 0 auto;
+	padding: 3px 8px;
+	border-top: 1px solid var(--w2k-shadow);
+	border-left: 1px solid var(--w2k-shadow);
+	border-right: 1px solid var(--w2k-light);
+	border-bottom: 1px solid var(--w2k-light);
+	background: var(--w2k-face);
+	white-space: nowrap;
+}
+
+.status-cell-wide {
+	flex: 1;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+/* Taskbar */
+.taskbar {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	margin: 10px -16px 0 -16px;
+	padding: 3px 6px;
+	background: var(--w2k-face);
+	border-top: 1px solid var(--w2k-mid-light);
+	box-shadow: inset 0 1px 0 var(--w2k-light);
+}
+
+.start-btn {
+	display: flex;
+	align-items: center;
+	gap: 5px;
+	min-width: 0;
+	font-weight: bold;
+}
+
+.start-logo {
+	font-size: 14px;
+}
+
+.taskbar-divider {
+	width: 1px;
+	align-self: stretch;
+	background: var(--w2k-shadow);
+	box-shadow: 1px 0 0 var(--w2k-light);
+}
+
+.taskbar-task {
+	flex: 0 1 200px;
+	padding: 4px 8px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	border-top: 1px solid var(--w2k-black);
+	border-left: 1px solid var(--w2k-black);
+	border-right: 1px solid var(--w2k-light);
+	border-bottom: 1px solid var(--w2k-light);
+	box-shadow: inset 1px 1px 0 var(--w2k-shadow);
+	background: var(--w2k-mid-light);
+}
+
+.taskbar-spacer {
+	flex: 1;
+}
+
+.taskbar-clock {
+	padding: 4px 12px;
+	background: var(--w2k-face);
+}
+
+@media (max-width: 560px) {
+	.desktop {
+		padding: 8px 8px 0 8px;
+	}
+
+	.msg-box {
+		max-width: 100%;
+	}
+
+	.composer-row {
+		flex-direction: column;
+	}
+}

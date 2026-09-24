@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Ollama Chat - Windows 2000</title>
+	<link rel="stylesheet" href="styles.css">
+	<script src="app.js" defer></script>
+</head>
+<body>
+	<div class="desktop">
+		<section class="window" aria-label="Ollama chat window">
+			<header class="title-bar">
+				<div class="title-bar-text">
+					<span class="title-icon" aria-hidden="true">&#9635;</span>
+					<span>Ollama Chat - qwen2.5:1.5b</span>
+				</div>
+				<div class="title-bar-controls" aria-hidden="true">
+					<button class="title-btn" type="button" tabindex="-1" title="Minimize">_</button>
+					<button class="title-btn" type="button" tabindex="-1" title="Maximize">&#9633;</button>
+					<button class="title-btn title-btn-close" type="button" tabindex="-1" title="Close">X</button>
+				</div>
+			</header>
+
+			<nav class="menu-bar" aria-label="Window menu">
+				<span class="menu-item"><u>F</u>ile</span>
+				<span class="menu-item"><u>E</u>dit</span>
+				<span class="menu-item"><u>V</u>iew</span>
+				<span class="menu-item"><u>H</u>elp</span>
+			</nav>
+
+			<div class="toolbar">
+				<label class="toolbar-group" for="model-select">
+					<span class="toolbar-label">Model:</span>
+					<select id="model-select" class="win2000-select" disabled title="Model selection is display-only until backend is wired">
+						<option selected>qwen2.5:1.5b</option>
+						<option>gemma2:2b</option>
+					</select>
+				</label>
+				<span class="toolbar-separator" aria-hidden="true"></span>
+				<span class="toolbar-group">
+					<span class="status-lamp status-lamp-off" id="backend-lamp" aria-hidden="true"></span>
+					<span class="toolbar-label" id="backend-label">Backend: not connected</span>
+				</span>
+				<span class="toolbar-spacer"></span>
+				<button class="win2000-btn" id="new-chat-btn" type="button">New Chat</button>
+				<button class="win2000-btn" id="clear-btn" type="button">Clear</button>
+			</div>
+
+			<main class="chat-scroll" id="chat-scroll">
+				<div class="chat-inner" id="chat-log" aria-live="polite" aria-label="Conversation"></div>
+			</main>
+
+			<footer class="composer">
+				<label class="composer-label" for="composer-input">Message:</label>
+				<div class="composer-row">
+					<textarea
+						id="composer-input"
+						class="win2000-inset composer-input"
+						rows="3"
+						maxlength="2000"
+						placeholder="Type a message... (sending is local-only, backend not wired)"
+					></textarea>
+					<div class="composer-buttons">
+						<button class="win2000-btn win2000-btn-default" id="send-btn" type="button">Send</button>
+						<span class="composer-hint">Enter: send<br>Shift+Enter: newline</span>
+					</div>
+				</div>
+			</footer>
+
+			<div class="status-bar">
+				<span class="status-cell status-cell-wide" id="status-text">Ready</span>
+				<span class="status-cell" id="char-count">0 / 2000</span>
+				<span class="status-cell">100%</span>
+			</div>
+		</section>
+
+		<footer class="taskbar">
+			<button class="win2000-btn start-btn" type="button">
+				<span class="start-logo" aria-hidden="true">&#9787;</span>
+				<strong>Start</strong>
+			</button>
+			<span class="taskbar-divider" aria-hidden="true"></span>
+			<span class="taskbar-task taskbar-task-active">
+				<span aria-hidden="true">&#9635;</span>
+				Ollama Chat
+			</span>
+			<span class="taskbar-spacer"></span>
+			<span class="taskbar-clock win2000-inset" id="taskbar-clock">--:--</span>
+		</footer>
+	</div>
+</body>
+</html>

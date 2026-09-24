@@ -6,11 +6,8 @@ ENV ASPNETCORE_URLS=http://+:8080
 ENV DOTNET_USE_POLLING_FILE_WATCHER=true
 ENV DOTNET_WATCH_RESTART_ON_RUDE_EDIT=true
 
-# Copy only the project file first to leverage Docker layer caching on restore
-COPY ["*.csproj", "./"]
-RUN dotnet restore "./*.csproj"
+# Restore dependencies to warm the NuGet cache; source code is provided at runtime via compose volume
+COPY ["OllamaApiProxy.csproj", "./"]
+RUN dotnet restore "OllamaApiProxy.csproj"
 
-# Copy the remaining source code for live reload
-COPY . .
-
-ENTRYPOINT ["dotnet", "watch", "run", "--no-launch-profile"]
+ENTRYPOINT ["dotnet", "watch", "run", "--project", "OllamaApiProxy.csproj", "--no-launch-profile"]
